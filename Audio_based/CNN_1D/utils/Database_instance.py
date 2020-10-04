@@ -2,8 +2,8 @@ import math
 
 import numpy as np
 
-from Audio_based.Classification.Preprocessing.labels_utils import extend_sample_rate_of_labels
-from Audio_based.utils import utils
+from Audio_based.CNN_1D.Classification.Preprocessing.labels_utils import extend_sample_rate_of_labels
+from Audio_based.CNN_1D.utils import utils
 
 
 class Database_instance():

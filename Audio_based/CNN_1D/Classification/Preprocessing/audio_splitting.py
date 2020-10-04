@@ -4,7 +4,7 @@ from scipy.io import wavfile
 from spleeter.audio.adapter import get_default_audio_adapter
 from spleeter.separator import Separator
 
-from Audio_based.Classification.Preprocessing.preprocessing_utils import load_wav_file
+from Audio_based.CNN_1D.Classification.Preprocessing.preprocessing_utils import load_wav_file
 
 
 def separate_one_audio_on_accompaniment_and_vocals_by_spleeter(path_to_audio, sample_rate, output_directory):

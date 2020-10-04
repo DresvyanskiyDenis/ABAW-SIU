@@ -4,8 +4,8 @@ from sklearn.metrics import f1_score, accuracy_score
 import numpy as np
 import pandas as pd
 
-from Audio_based.Classification.Preprocessing.labels_utils import transform_probabilities_to_original_sample_rate
-from Audio_based.utils.utils import CCC_2_sequences_numpy
+from Audio_based.CNN_1D.Classification.Preprocessing.labels_utils import transform_probabilities_to_original_sample_rate
+from Audio_based.CNN_1D.utils.utils import CCC_2_sequences_numpy
 
 
 class Metric_calculator():

@@ -3,11 +3,11 @@ import numpy as np
 import tensorflow as tf
 import pandas as pd
 
-from Audio_based.Classification.Preprocessing.labels_utils import transform_probabilities_to_original_sample_rate
-from Audio_based.utils.Database_instance import Database_instance
-from Audio_based.utils.Generator_audio import predict_data_with_the_model
-from Audio_based.utils.models import CNN_1D_model
-from Audio_based.utils.utils import load_data_wav
+from Audio_based.CNN_1D.Classification.Preprocessing.labels_utils import transform_probabilities_to_original_sample_rate
+from Audio_based.CNN_1D.utils.Database_instance import Database_instance
+from Audio_based.CNN_1D.utils.Generator_audio import predict_data_with_the_model
+from Audio_based.CNN_1D.utils.models import CNN_1D_model
+from Audio_based.CNN_1D.utils.utils import load_data_wav
 
 
 def generate_test_predictions(path_to_data, labels_filename, model, model_output_sample_rate, path_to_video, window_size, window_step, prediction_mode):
