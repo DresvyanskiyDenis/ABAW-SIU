@@ -1,6 +1,6 @@
 import tensorflow as tf
 from Audio_based.utils.Database import Database
-from Audio_based.utils.Generator_audio import predict_data_with_model
+from Audio_based.utils.Generator_audio import predict_data_with_the_model
 from Audio_based.utils.Metric_calculator import Metric_calculator
 from Audio_based.utils.models import CNN_1D_model
 from Audio_based.utils.utils import load_labels, load_data_wav
@@ -57,7 +57,7 @@ if __name__ == "__main__":
 
 
     # calculate metric on train
-    predict_data_with_model(model, train_database.data_instances, prediction_mode=prediction_mode)
+    predict_data_with_the_model(model, train_database.data_instances, prediction_mode=prediction_mode)
     train_result = Metric_calculator(None, None, None). \
         calculate_FG_2020_F1_and_accuracy_scores_across_all_instances(train_database.data_instances)
     print('Train: FG_2020 metric:%f, F1:%f, Accuracy:%f'%train_result)
