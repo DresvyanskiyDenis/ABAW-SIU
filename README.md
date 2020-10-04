@@ -1,4 +1,4 @@
-THE EFFECTIVENESS OF MULTI-MODEL FUSION IN EMOTION RECOGNITION PROBLEM
+# The Effectiveness of Multi-model Fusion in Emotion Recognition Problem
 
 The paper link: link
 
