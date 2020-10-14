@@ -1,7 +1,7 @@
 PANN-based audio model
 ==============================
 
-Project Organization
+The PANN-based project Organization
 ------------
 
     ├── LICENSE
