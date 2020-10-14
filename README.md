@@ -8,9 +8,9 @@ The weights for models and support files can be downloaded through this [link](h
 
 Every model from the article is located in separate folders with all needed code for generating, training, and predicting processes.
 
-The code for generating and using models organized as follows:
-+ Video-based models
-  + VGGFace2-based model: Resnet50 pretrained on the [VGGFace2 dataset](https://arxiv.org/abs/1710.08092). 
-+ Audio-based models
-  + 1D CNN + LSTM model: Our own created 1D CNN + LSTM model, which is able to model sequence-to-one processing with capturing temporal information.
-  + PANN-based model: [Large-Scale Pretrained Audio Neural Networks for Audio Pattern Recognition](https://arxiv.org/abs/1912.10211)
+The repository organised as follows:
++ Video_based_models
+  + VGGFace2: VGGFace2 model - a Resnet50 pretrained on the [VGGFace2 dataset](https://arxiv.org/abs/1710.08092) model, which then was used to transfer it on emotion classification task. 
++ Audio_based_models
+  + CNN_1D: Our own created 1D CNN + LSTM model, which is able to model sequence-to-one processing with capturing temporal information.
+  + PANN: [Large-Scale Pretrained Audio Neural Networks for Audio Pattern Recognition](https://arxiv.org/abs/1912.10211), which then was used in emotion classification task by audio.
