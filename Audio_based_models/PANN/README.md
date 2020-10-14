@@ -1,7 +1,7 @@
-Compare2020 Mask SC
+PANN-based audio model
 ==============================
 
-Project Organization
+The PANN-based project Organization
 ------------
 
     ├── LICENSE
