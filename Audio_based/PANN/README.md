@@ -1,4 +1,4 @@
-Compare2020 Mask SC
+PANN-based audio model
 ==============================
 
 Project Organization
