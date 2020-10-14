@@ -6,3 +6,8 @@ The paper is available via this [link](https://arxiv.org/abs/2010.03692).
 The weights for models and support files can be downloaded through this [link](https://drive.google.com/drive/folders/1Sw_Zgp0rCKEVVlH0bjUXESn3QMpBRds-?usp=sharing).
 
 The code organised as follows:
+- Video-based models
+ + VGGFace2-based model
++ Audio-based models
+ + 1D CNN + LSTM model
+ + PANN-based model
