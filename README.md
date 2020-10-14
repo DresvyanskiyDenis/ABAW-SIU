@@ -7,7 +7,7 @@ The weights for models and support files can be downloaded through this [link](h
 
 The code organised as follows:
 - Video-based models
- + VGGFace2-based model
+  + VGGFace2-based model
 + Audio-based models
- + 1D CNN + LSTM model
- + PANN-based model
+  + 1D CNN + LSTM model
+  + PANN-based model
