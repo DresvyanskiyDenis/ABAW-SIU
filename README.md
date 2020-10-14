@@ -1,5 +1,5 @@
-# The Effectiveness of Multi-model Fusion in Emotion Recognition Problem
+# An Audio-Video Deep and Transfer Learning Framework for Multimodal Emotion Recognition in the wild
 
-The paper link: link
+The paper is available via this [link](http://example.com).
 
 The weights for models and support files can be downloaded through this LINK.
