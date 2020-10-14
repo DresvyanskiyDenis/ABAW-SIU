@@ -2,13 +2,13 @@ import pandas as pd
 import os
 import tensorflow as tf
 
-from Audio_based.CNN_1D.Classification.Preprocessing.labels_utils import transform_probabilities_to_original_sample_rate
-from Audio_based.CNN_1D.utils.Database import Database
-from Audio_based.CNN_1D.utils.Generator_audio import predict_data_with_the_model
+from Audio_based_models.CNN_1D.Classification.Preprocessing.labels_utils import transform_probabilities_to_original_sample_rate
+from Audio_based_models.CNN_1D.utils.Database import Database
+from Audio_based_models.CNN_1D.utils.Generator_audio import predict_data_with_the_model
 
-from Audio_based.CNN_1D.utils.utils import load_labels, load_data_wav
+from Audio_based_models.CNN_1D.utils.utils import load_labels, load_data_wav
 
-from Audio_based.CNN_1D.utils.models import CNN_1D_model
+from Audio_based_models.CNN_1D.utils.models import CNN_1D_model
 
 
 def generate_predictions(database, model, need_save=True, path_to_save_predictions=''):
