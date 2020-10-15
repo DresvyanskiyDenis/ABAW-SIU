@@ -74,9 +74,6 @@ def fill_gap_between_two_points(left_value, right_value, num_points):
         res[middle:]=right_value
     return res
 
-
-
-
 def extend_sample_rate_of_labels(labels, original_sample_rate, needed_sample_rate):
     """This function extends sample rate of provided labels from original_sample_rate to needed_sample_rate
        by stretching existing labels with calculated ratio
@@ -86,31 +83,36 @@ def extend_sample_rate_of_labels(labels, original_sample_rate, needed_sample_rat
     :param needed_sample_rate:int
     :return: ndarray, stretched labels with new sample_rate
     """
-    # converting labels in ndarray if it is DataFrame
-    if isinstance(labels, pd.DataFrame):
-        labels=labels.values.reshape((-1,))
     # calculate ration between original and needed sample rates
     ratio=needed_sample_rate/original_sample_rate
     new_size_of_labels=int(math.ceil(labels.shape[0]*ratio))
-    new_labels=np.zeros(shape=(new_size_of_labels,))
     # calculating key_points - positions, which will be used as indexes for provided labels_filenames
     # e.g.
     # we have labels [1 1 1 2 2 1] with sample rate=2 and we need sample rate 6 (ratio=3)
     # then key_points will be
     # [0 3 6 9 12 15] ---> [1 _ _ 1 _ _ 1 _ _ 2 _ _ 2 _ _ 1 _ _]
     # old shape=6 ---> new shape = 18
-    key_points=np.array([int(round(i*ratio)) for i in range(labels.shape[0])])
-    for i in range(key_points.shape[0]-1):
-        start=key_points[i]
-        end=key_points[i+1]
-        new_labels[start:end]=fill_gap_between_two_points(left_value=labels[i], right_value=labels[i+1],
-                                                          num_points=end-start)
-    # last part of sequence (from key_points[-1] to end of sequence)
-    start=key_points[-1]
-    end=new_size_of_labels
-    new_labels[start:end]=fill_gap_between_two_points(left_value=labels[-1], right_value=labels[-1],
-                                                      num_points=end-start)
+    expanded_numpy_with_nan=generate_extended_array_with_key_points(array_to_extend=labels.values, new_size_of_array=new_size_of_labels, ratio=ratio)
+    new_labels=pd.DataFrame(columns=labels.columns,data=expanded_numpy_with_nan).interpolate()
     return new_labels
+
+def generate_extended_array_with_key_points(array_to_extend, new_size_of_array, ratio):
+    expanded_numpy = np.full(shape=(new_size_of_array, array_to_extend.shape[1]), fill_value=np.nan)
+    int_part=ratio//1
+    float_part=ratio%1
+    idx_expanded_array=0
+    idx_array_to_extend=0
+    residual=0
+    while idx_array_to_extend<array_to_extend.shape[0]:
+        expanded_numpy[idx_expanded_array]=array_to_extend[idx_array_to_extend]
+        residual+=float_part
+        idx_to_add=int(int_part)
+        if residual>=1:
+            idx_to_add+=1
+            residual-=1
+        idx_expanded_array+=idx_to_add
+        idx_array_to_extend+=1
+    return expanded_numpy
 
 
 def downgrade_sample_rate_of_labels(labels, original_sample_rate, needed_sample_rate):
