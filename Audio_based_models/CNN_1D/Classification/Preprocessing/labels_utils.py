@@ -74,6 +74,73 @@ def fill_gap_between_two_points(left_value, right_value, num_points):
         res[middle:]=right_value
     return res
 
+def fill_gap_between_two_points(left_value, right_value, num_points):
+    """This function transform two points to sequence with filling gap between it
+    e.g.
+        left_value=1
+        right_value=1
+        num_points=10
+        1 _ _ _ _ _ _ _ _ 1 ----> 1 1 1 1 1 1 1 1 1 1
+    if we have different values, then
+        left_value=1
+        right_value=2
+        num_points=10
+        1 _ _ _ _ _ _ _ _ 2 ----> 1 1 1 1 1 2 2 2 2 2
+
+
+    :param left_value: int or float
+    :param right_value: int or float
+    :param num_points: int
+    :return: ndarray, sequence with left and right values on borders and filled gap between them
+    """
+    if left_value==right_value:
+        tmp=[left_value for i in range(num_points)]
+        res=np.array(tmp)
+    else:
+        middle=num_points//2
+        res=np.ones((num_points,1))
+        res[0:middle]=left_value
+        res[middle:]=right_value
+    return res
+
+
+
+
+def extend_sample_rate_of_array(labels, original_sample_rate, needed_sample_rate):
+    """This function extends sample rate of provided labels from original_sample_rate to needed_sample_rate
+       by stretching existing labels with calculated ratio
+
+    :param labels: ndarray (n_labels,) or DataFrame (n_labels, 1)
+    :param original_sample_rate: int, sample rate of provided labels
+    :param needed_sample_rate:int
+    :return: ndarray, stretched labels with new sample_rate
+    """
+    # converting labels in ndarray if it is DataFrame
+    if isinstance(labels, pd.DataFrame):
+        labels=labels.values.reshape((-1,))
+    # calculate ration between original and needed sample rates
+    ratio=needed_sample_rate/original_sample_rate
+    new_size_of_labels=int(math.ceil(labels.shape[0]*ratio))
+    new_labels=np.zeros(shape=(new_size_of_labels,)+labels.shape[1:])
+    # calculating key_points - positions, which will be used as indexes for provided labels_filenames
+    # e.g.
+    # we have labels [1 1 1 2 2 1] with sample rate=2 and we need sample rate 6 (ratio=3)
+    # then key_points will be
+    # [0 3 6 9 12 15] ---> [1 _ _ 1 _ _ 1 _ _ 2 _ _ 2 _ _ 1 _ _]
+    # old shape=6 ---> new shape = 18
+    key_points=np.array([int(round(i*ratio)) for i in range(labels.shape[0])])
+    for i in range(key_points.shape[0]-1):
+        start=key_points[i]
+        end=key_points[i+1]
+        new_labels[start:end]=fill_gap_between_two_points(left_value=labels[i], right_value=labels[i+1],
+                                                          num_points=end-start)
+    # last part of sequence (from key_points[-1] to end of sequence)
+    start=key_points[-1]
+    end=new_size_of_labels
+    new_labels[start:end]=fill_gap_between_two_points(left_value=labels[-1], right_value=labels[-1],
+                                                      num_points=end-start)
+    return new_labels
+
 def extend_sample_rate_of_labels(labels, original_sample_rate, needed_sample_rate):
     """This function extends sample rate of provided labels from original_sample_rate to needed_sample_rate
        by stretching existing labels with calculated ratio

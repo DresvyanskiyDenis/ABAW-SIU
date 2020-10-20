@@ -2,7 +2,8 @@ import math
 
 import numpy as np
 
-from Audio_based_models.CNN_1D.Classification.Preprocessing.labels_utils import extend_sample_rate_of_labels
+from Audio_based_models.CNN_1D.Classification.Preprocessing.labels_utils import extend_sample_rate_of_labels, \
+    extend_sample_rate_of_array
 from Audio_based_models.CNN_1D.utils import utils
 
 
@@ -151,7 +152,7 @@ class Database_instance():
     def generate_array_without_class(self, arr,arr_frame_rate, class_num):
         indexes=self.labels!=class_num
         if arr_frame_rate!=self.labels_frame_rate:
-            indexes=extend_sample_rate_of_labels(indexes, self.labels_frame_rate, arr_frame_rate).astype('bool')
+            indexes=extend_sample_rate_of_array(indexes, self.labels_frame_rate, arr_frame_rate).astype('bool')
             indexes=indexes[:arr.shape[0]]
         return arr[indexes]
 

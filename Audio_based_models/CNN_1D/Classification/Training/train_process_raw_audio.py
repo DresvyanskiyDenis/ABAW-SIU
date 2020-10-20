@@ -45,7 +45,7 @@ def train_model_on_data(path_to_data, path_to_labels_train, path_to_labels_valid
 
 
     # model params
-    model_input=(train_database.data_instances[0].data_window_size,)+train_database.data_instances[0].data.shape[1:]
+    model_input=(train_database.data_instances[0].data_window_size,1)
     num_classes=7
     batch_size=20
     epochs=2
@@ -144,8 +144,8 @@ if __name__ == "__main__":
     class_weights_mode='scikit'
     prediction_mode='sequence_to_one'
     save_model_every_batch=True
-    load_weights_before_training=True
-    need_load_result_best_model=True
+    load_weights_before_training=False
+    need_load_result_best_model=False
     for window_size in window_sizes:
         output_directory=path_to_output+'1D_CNN_window_size_'+str(window_size)+'\\'
         if not os.path.exists(output_directory):
@@ -163,7 +163,7 @@ if __name__ == "__main__":
                                        save_model_every_batch=save_model_every_batch,
                                        load_weights_before_training=load_weights_before_training,
                                        path_to_weights=output_directory+'last_epoch_model_weights.h5',
-                                       validation_value_best_model=best_value)
+                                       validation_value_best_model=False)
         results=results.append({'data directory':path_to_data, 'window size':window_size, 'validation_result':val_result}, ignore_index=True)
         results.to_csv('test_results.csv', index=False)
 
