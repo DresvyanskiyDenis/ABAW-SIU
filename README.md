@@ -15,4 +15,4 @@ The repository organised as follows:
   + CNN_1D: Our own created 1D CNN + LSTM model, which is able to model sequence-to-one processing with capturing temporal information.
   + PANN: [Large-Scale Pretrained Audio Neural Networks for Audio Pattern Recognition](https://arxiv.org/abs/1912.10211), which then was used in emotion classification task by audio.
 
-The description of further work on the article for Interspeech 2021 will be presented soon.
+** The description of further work on the article for Interspeech 2021 will be presented soon. **
